@@ -224,6 +224,49 @@
             border-radius: 4px;
         }
 
+        .slider-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 20;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .slider-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+            scale: 1.1;
+        }
+
+        .group:hover .slider-nav-btn {
+            opacity: 1;
+        }
+
+        .slider-nav-btn.prev {
+            left: 12px;
+        }
+
+        .slider-nav-btn.next {
+            right: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .slider-nav-btn {
+                display: none;
+            }
+        }
+
         .dark img[src*="logo.png"] {
             filter: invert(1) brightness(2);
         }
@@ -324,7 +367,7 @@
             </div>
         </nav><!-- Hero Section -->
         <section
-            class="min-h-fit md:min-h-screen flex items-center justify-center pt-32 pb-12 md:py-20 relative bg-[var(--bg-primary)] overflow-hidden transition-colors duration-300">
+            class="min-h-fit md:min-h-screen flex items-center justify-center pt-16 pb-6 md:py-10 relative bg-[var(--bg-primary)] overflow-hidden transition-colors duration-300">
             <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
                 <h1 id="heroHeadline"
                     class="fade-in stagger-1 font-body text-5xl md:text-7xl font-bold tracking-tight mb-4 text-[var(--text-primary)] transition-colors duration-300">
@@ -345,7 +388,7 @@
             </div>
         </section>
         <!-- Studio Spaces Section -->
-        <section id="spaces" class="py-12 md:py-32 px-6 bg-[var(--bg-primary)] transition-colors duration-300">
+        <section id="spaces" class="py-6 md:py-16 px-6 bg-[var(--bg-primary)] transition-colors duration-300">
             <div class="max-w-7xl mx-auto">
                 <div class="text-center mb-16">
                     <p class="text-sm tracking-[0.3em] text-[var(--text-secondary)] mb-4 font-light">OUR SPACES</p>
@@ -353,43 +396,56 @@
                         Setups</h2>
                     <div class="section-divider mx-auto"></div>
                 </div>
-                <div class="grid md:grid-cols-3 gap-8"><!--Santoni Vibes -->
+                <div class="grid md:grid-cols-3 gap-8"><!-- Infinity Backdrop -->
                     <div
                         class="card-hover bg-[var(--card-bg)] rounded-3xl overflow-hidden transition-colors duration-300 border border-transparent dark:border-stone-800">
                         <div class="aspect-[4/5] overflow-hidden relative group">
                             <div class="slider-container h-full" data-slider="1">
                                 <div class="slider-item">
-                                    <div
-                                        class="w-full h-full bg-gradient-to-br from-gray-100 via-stone-100 to-gray-200 flex items-center justify-center">
-                                        <svg viewbox="0 0 200 200" class="w-32 h-32 text-stone-300">
-                                            <rect x="20" y="40" width="160" height="120" rx="8" fill="none"
-                                                stroke="currentColor" stroke-width="2" />
-                                            <path d="M20 80 Q100 60 180 80" fill="none" stroke="currentColor"
-                                                stroke-width="1.5" />
-                                        </svg>
-                                    </div>
+                                    <img src="assets/santoni1.jpg" alt="Santoni Angle 1"
+                                        class="w-full h-full object-cover">
                                 </div>
                                 <div class="slider-item">
-                                    <div class="w-full h-full bg-stone-200 flex items-center justify-center">
-                                        <span class="text-stone-400 font-light text-sm uppercase tracking-widest">Angle
-                                            Two</span>
-                                    </div>
+                                    <img src="assets/santoni2.jpg" alt="Santoni Angle 2"
+                                        class="w-full h-full object-cover">
                                 </div>
                                 <div class="slider-item">
-                                    <div class="w-full h-full bg-stone-300 flex items-center justify-center">
-                                        <span class="text-stone-400 font-light text-sm uppercase tracking-widest">Angle
-                                            Three</span>
-                                    </div>
+                                    <img src="assets/santoni3.jpg" alt="Santoni Angle 3"
+                                        class="w-full h-full object-cover">
+                                </div>
+                                <div class="slider-item">
+                                    <img src="assets/santoni4.jpg" alt="Santoni Angle 4"
+                                        class="w-full h-full object-cover">
+                                </div>
+                                <div class="slider-item">
+                                    <img src="assets/santoni5.jpg" alt="Santoni Angle 5"
+                                        class="w-full h-full object-cover">
                                 </div>
                             </div>
                             <div class="slider-dots" data-dots="1">
                                 <div class="slider-dot active"></div>
                                 <div class="slider-dot"></div>
                                 <div class="slider-dot"></div>
+                                <div class="slider-dot"></div>
+                                <div class="slider-dot"></div>
                             </div>
+                            <!-- Nav Buttons -->
+                            <button class="slider-nav-btn prev" onclick="scrollSlider(1, -1)" aria-label="Previous">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </button>
+                            <button class="slider-nav-btn next" onclick="scrollSlider(1, 1)" aria-label="Next">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
                         </div>
                         <div class="p-6">
-                            <h3 class="font-display text-2xl font-medium mb-2 text-[var(--text-primary)]">Santoni Vibes</h3>
+                            <h3 class="font-display text-2xl font-medium mb-2 text-[var(--text-primary)]">Infinity
+                                Backdrop</h3>
                             <p class="text-stone-500 font-light leading-relaxed">Seamless cyclorama perfect for clean,
                                 editorial fashion and product photography.</p>
                         </div>
@@ -400,32 +456,51 @@
                         <div class="aspect-[4/5] overflow-hidden relative group">
                             <div class="slider-container h-full" data-slider="2">
                                 <div class="slider-item">
-                                    <div
-                                        class="w-full h-full bg-gradient-to-br from-amber-50 via-stone-100 to-amber-100 flex items-center justify-center">
-                                        <svg viewbox="0 0 200 200" class="w-32 h-32 text-stone-300">
-                                            <rect x="50" y="30" width="100" height="80" rx="8" fill="none"
-                                                stroke="currentColor" stroke-width="2" />
-                                        </svg>
-                                    </div>
+                                    <img src="assets/heritage1.jpg" alt="Heritage Angle 1"
+                                        class="w-full h-full object-cover">
                                 </div>
                                 <div class="slider-item">
-                                    <div class="w-full h-full bg-amber-50 flex items-center justify-center">
-                                        <span class="text-stone-400 font-light text-sm uppercase tracking-widest">Detail
-                                            One</span>
-                                    </div>
+                                    <img src="assets/heritage2.jpg" alt="Heritage Angle 2"
+                                        class="w-full h-full object-cover">
                                 </div>
                                 <div class="slider-item">
-                                    <div class="w-full h-full bg-amber-100 flex items-center justify-center">
-                                        <span class="text-stone-400 font-light text-sm uppercase tracking-widest">Detail
-                                            Two</span>
-                                    </div>
+                                    <img src="assets/heritage3.jpg" alt="Heritage Angle 3"
+                                        class="w-full h-full object-cover">
+                                </div>
+                                <div class="slider-item">
+                                    <img src="assets/heritage4.jpg" alt="Heritage Angle 4"
+                                        class="w-full h-full object-cover">
+                                </div>
+                                <div class="slider-item">
+                                    <img src="assets/heritage5.jpg" alt="Heritage Angle 5"
+                                        class="w-full h-full object-cover">
+                                </div>
+                                <div class="slider-item">
+                                    <img src="assets/heritage6.jpg" alt="Heritage Angle 6"
+                                        class="w-full h-full object-cover">
                                 </div>
                             </div>
                             <div class="slider-dots" data-dots="2">
                                 <div class="slider-dot active"></div>
                                 <div class="slider-dot"></div>
                                 <div class="slider-dot"></div>
+                                <div class="slider-dot"></div>
+                                <div class="slider-dot"></div>
+                                <div class="slider-dot"></div>
                             </div>
+                            <!-- Nav Buttons -->
+                            <button class="slider-nav-btn prev" onclick="scrollSlider(2, -1)" aria-label="Previous">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </button>
+                            <button class="slider-nav-btn next" onclick="scrollSlider(2, 1)" aria-label="Next">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
                         </div>
                         <div class="p-6">
                             <h3 class="font-display text-2xl font-medium mb-2 text-[var(--text-primary)]">Vanity Setup
@@ -469,6 +544,19 @@
                                 <div class="slider-dot"></div>
                                 <div class="slider-dot"></div>
                             </div>
+                            <!-- Nav Buttons -->
+                            <button class="slider-nav-btn prev" onclick="scrollSlider(3, -1)" aria-label="Previous">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </button>
+                            <button class="slider-nav-btn next" onclick="scrollSlider(3, 1)" aria-label="Next">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
                         </div>
                         <div class="p-6">
                             <h3 class="font-display text-2xl font-medium mb-2 text-[var(--text-primary)]">Lifestyle Set
@@ -481,7 +569,7 @@
             </div>
         </section> <!-- Portfolio Section -->
         <section id="portfolio"
-            class="py-24 md:py-32 px-6 bg-[var(--bg-primary)] dark:bg-stone-900/20 transition-colors duration-300">
+            class="py-12 md:py-16 px-6 bg-[var(--bg-primary)] dark:bg-stone-900/20 transition-colors duration-300">
             <div class="max-w-7xl mx-auto">
                 <div class="text-center mb-16">
                     <p class="text-sm tracking-[0.3em] text-[var(--text-secondary)] mb-4 font-light">PORTFOLIO</p>
@@ -490,25 +578,185 @@
                     <div class="section-divider mx-auto"></div>
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"><!-- Gallery Items -->
-                    <div class="gallery-item aspect-[3/4] bg-gradient-to-br from-rose-100 via-stone-100 to-amber-100">
-                        <div class="w-full h-full flex items-center justify-center"><span
-                                class="text-stone-400 text-xs tracking-widest">FASHION</span>
+                    <div class="gallery-item aspect-[3/4] relative group card-hover">
+                        <div class="slider-container h-full" data-slider="4">
+                            <div class="slider-item">
+                                <img src="assets/alizay1.jpg" alt="Alizay Shoot 1" class="w-full h-full object-cover">
+                            </div>
+                            <div class="slider-item">
+                                <img src="assets/alizay2.jpg" alt="Alizay Shoot 2" class="w-full h-full object-cover">
+                            </div>
+                            <div class="slider-item">
+                                <img src="assets/alizay3.jpg" alt="Alizay Shoot 3" class="w-full h-full object-cover">
+                            </div>
                         </div>
+
+                        <!-- Overlay Text -->
+                        <div
+                            class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent pointer-events-none transition-opacity duration-500 group-hover:from-black/80">
+                            <p class="text-white text-xs tracking-[0.3em] font-light uppercase mb-1">PERSONAL</p>
+                            <h3 class="text-white font-display text-xl">Profile Shoot</h3>
+                        </div>
+
+                        <!-- Dots -->
+                        <div class="slider-dots bottom-4" data-dots="4">
+                            <div class="slider-dot active"></div>
+                            <div class="slider-dot"></div>
+                            <div class="slider-dot"></div>
+                        </div>
+
+                        <!-- Nav Buttons (Shared Component Styles) -->
+                        <button class="slider-nav-btn prev" onclick="scrollSlider(4, -1)" aria-label="Previous">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                        <button class="slider-nav-btn next" onclick="scrollSlider(4, 1)" aria-label="Next">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
                     </div>
-                    <div class="gallery-item aspect-[3/4] bg-gradient-to-br from-stone-200 via-gray-100 to-stone-100">
-                        <div class="w-full h-full flex items-center justify-center"><span
-                                class="text-stone-400 text-xs tracking-widest">PRODUCT</span>
+                    <div class="gallery-item aspect-[3/4] relative group card-hover">
+                        <div class="slider-container h-full" data-slider="5">
+                            <div class="slider-item">
+                                <img src="assets/designer1.jpg" alt="Brand Shoot 1" class="w-full h-full object-cover">
+                            </div>
+                            <div class="slider-item">
+                                <img src="assets/designer2.jpg" alt="Brand Shoot 2" class="w-full h-full object-cover">
+                            </div>
+                            <div class="slider-item">
+                                <img src="assets/designer3.jpg" alt="Brand Shoot 3" class="w-full h-full object-cover">
+                            </div>
                         </div>
+
+                        <!-- Overlay Text -->
+                        <div
+                            class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent pointer-events-none transition-opacity duration-500 group-hover:from-black/80">
+                            <p class="text-white text-xs tracking-[0.3em] font-light uppercase mb-1">COMMERCIAL</p>
+                            <h3 class="text-white font-display text-xl">Brand Shoot</h3>
+                        </div>
+
+                        <!-- Dots -->
+                        <div class="slider-dots bottom-4" data-dots="5">
+                            <div class="slider-dot active"></div>
+                            <div class="slider-dot"></div>
+                            <div class="slider-dot"></div>
+                        </div>
+
+                        <!-- Nav Buttons -->
+                        <button class="slider-nav-btn prev" onclick="scrollSlider(5, -1)" aria-label="Previous">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                        <button class="slider-nav-btn next" onclick="scrollSlider(5, 1)" aria-label="Next">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
                     </div>
-                    <div class="gallery-item aspect-[3/4] bg-gradient-to-br from-amber-100 via-stone-50 to-rose-100">
-                        <div class="w-full h-full flex items-center justify-center"><span
-                                class="text-stone-400 text-xs tracking-widest">BEAUTY</span>
+                    <div class="gallery-item aspect-[3/4] relative group card-hover">
+                        <div class="slider-container h-full" data-slider="6">
+                            <div class="slider-item">
+                                <img src="assets/leather1.jpg" alt="Leather Jacket 1"
+                                    class="w-full h-full object-cover">
+                            </div>
+                            <div class="slider-item">
+                                <img src="assets/leather2.jpg" alt="Leather Jacket 2"
+                                    class="w-full h-full object-cover">
+                            </div>
+                            <div class="slider-item">
+                                <img src="assets/leather3.jpg" alt="Leather Jacket 3"
+                                    class="w-full h-full object-cover">
+                            </div>
+                            <div class="slider-item">
+                                <img src="assets/leather4.jpg" alt="Leather Jacket 4"
+                                    class="w-full h-full object-cover">
+                            </div>
                         </div>
+
+                        <!-- Overlay Text -->
+                        <div
+                            class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent pointer-events-none transition-opacity duration-500 group-hover:from-black/80">
+                            <p class="text-white text-xs tracking-[0.3em] font-light uppercase mb-1">E-COMMERCE</p>
+                            <h3 class="text-white font-display text-xl">Leather jacket for Amazon</h3>
+                        </div>
+
+                        <!-- Dots -->
+                        <div class="slider-dots bottom-4" data-dots="6">
+                            <div class="slider-dot active"></div>
+                            <div class="slider-dot"></div>
+                            <div class="slider-dot"></div>
+                            <div class="slider-dot"></div>
+                        </div>
+
+                        <!-- Nav Buttons -->
+                        <button class="slider-nav-btn prev" onclick="scrollSlider(6, -1)" aria-label="Previous">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                        <button class="slider-nav-btn next" onclick="scrollSlider(6, 1)" aria-label="Next">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
                     </div>
-                    <div class="gallery-item aspect-[3/4] bg-gradient-to-br from-gray-100 via-stone-100 to-gray-200">
-                        <div class="w-full h-full flex items-center justify-center"><span
-                                class="text-stone-400 text-xs tracking-widest">LIFESTYLE</span>
+                    <div class="gallery-item aspect-[3/4] relative group card-hover">
+                        <div class="slider-container h-full" data-slider="7">
+                            <div class="slider-item">
+                                <img src="assets/shiza1.jpg" alt="Shiza Shoot 1" class="w-full h-full object-cover">
+                            </div>
+                            <div class="slider-item">
+                                <img src="assets/shiza2.jpg" alt="Shiza Shoot 2" class="w-full h-full object-cover">
+                            </div>
+                            <div class="slider-item">
+                                <img src="assets/shiza3.jpg" alt="Shiza Shoot 3" class="w-full h-full object-cover">
+                            </div>
+                            <div class="slider-item">
+                                <img src="assets/shiza4.jpg" alt="Shiza Shoot 4" class="w-full h-full object-cover">
+                            </div>
+                            <div class="slider-item">
+                                <img src="assets/shiza5.jpg" alt="Shiza Shoot 5" class="w-full h-full object-cover">
+                            </div>
                         </div>
+
+                        <!-- Overlay Text -->
+                        <div
+                            class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent pointer-events-none transition-opacity duration-500 group-hover:from-black/80">
+                            <p class="text-white text-xs tracking-[0.3em] font-light uppercase mb-1">PERSONAL</p>
+                            <h3 class="text-white font-display text-xl">Profile Shoot</h3>
+                        </div>
+
+                        <!-- Dots -->
+                        <div class="slider-dots bottom-4" data-dots="7">
+                            <div class="slider-dot active"></div>
+                            <div class="slider-dot"></div>
+                            <div class="slider-dot"></div>
+                            <div class="slider-dot"></div>
+                            <div class="slider-dot"></div>
+                        </div>
+
+                        <!-- Nav Buttons -->
+                        <button class="slider-nav-btn prev" onclick="scrollSlider(7, -1)" aria-label="Previous">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                        <button class="slider-nav-btn next" onclick="scrollSlider(7, 1)" aria-label="Next">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
                     </div>
                     <div
                         class="gallery-item col-span-2 aspect-[16/9] bg-gradient-to-br from-stone-100 via-amber-50 to-stone-200">
@@ -525,7 +773,7 @@
                 </div>
             </div>
         </section> <!-- Pricing Section -->
-        <section id="pricing" class="py-24 md:py-32 px-6 bg-[var(--bg-primary)] transition-colors duration-300">
+        <section id="pricing" class="py-12 md:py-16 px-6 bg-[var(--bg-primary)] transition-colors duration-300">
             <div class="max-w-5xl mx-auto">
                 <div class="text-center mb-16">
                     <p class="text-sm tracking-[0.3em] text-[var(--text-secondary)] mb-4 font-light">PRICING</p>
@@ -649,7 +897,7 @@
             </div>
         </section> <!-- About Section -->
         <section id="about"
-            class="py-24 md:py-32 px-6 bg-gradient-to-b from-[var(--bg-primary)] to-[var(--bg-primary)] transition-colors duration-300">
+            class="py-12 md:py-16 px-6 bg-gradient-to-b from-[var(--bg-primary)] to-[var(--bg-primary)] transition-colors duration-300">
             <div class="max-w-4xl mx-auto text-center">
                 <p class="text-sm tracking-[0.3em] text-[var(--text-secondary)] mb-4 font-light">ABOUT US</p>
                 <h2 class="font-display text-4xl md:text-5xl font-light mb-8 text-[var(--text-primary)]">Our Story</h2>
@@ -674,7 +922,7 @@
                 </div>
             </div>
         </section><!-- Booking CTA Section -->
-        <section id="book" class="py-24 md:py-32 px-6 bg-stone-900 text-white relative overflow-hidden">
+        <section id="book" class="py-12 md:py-16 px-6 bg-stone-900 text-white relative overflow-hidden">
             <!-- Decorative -->
             <div class="absolute top-0 left-0 w-64 h-64 bg-amber-600/10 rounded-full blur-3xl"></div>
             <div class="absolute bottom-0 right-0 w-96 h-96 bg-stone-700/50 rounded-full blur-3xl"></div>
@@ -1059,10 +1307,18 @@
                 });
             });
         });
+
+        function scrollSlider(sliderId, direction) {
+            const slider = document.querySelector(`[data-slider="${sliderId}"]`);
+            if (slider) {
+                slider.scrollBy({
+                    left: direction * slider.offsetWidth,
+                    behavior: 'smooth'
+                });
+            }
+        }
     </script>
     <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'9d35a14db0ca21e6',t:'MTc3MjAwNjAxOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
 </body>
 
 </html>
-
-
