@@ -179,6 +179,51 @@
             background: linear-gradient(45deg, rgba(201, 184, 168, 0.1) 0%, transparent 100%);
         }
 
+        /* Slider Styles */
+        .slider-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .slider-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .slider-item {
+            flex: 0 0 100%;
+            scroll-snap-align: start;
+            position: relative;
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 10;
+        }
+
+        .slider-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .slider-dot.active {
+            background: white;
+            width: 14px;
+            border-radius: 4px;
+        }
+
         .dark img[src*="logo.png"] {
             filter: invert(1) brightness(2);
         }
@@ -311,89 +356,126 @@
                 <div class="grid md:grid-cols-3 gap-8"><!-- Infinity Backdrop -->
                     <div
                         class="card-hover bg-[var(--card-bg)] rounded-3xl overflow-hidden transition-colors duration-300 border border-transparent dark:border-stone-800">
-                        <div class="aspect-[4/5] overflow-hidden">
-                            <div
-                                class="card-image w-full h-full bg-gradient-to-br from-gray-100 via-stone-100 to-gray-200 flex items-center justify-center">
-                                <svg viewbox="0 0 200 200" class="w-32 h-32 text-stone-300">
-                                    <rect x="20" y="40" width="160" height="120" rx="8" fill="none"
-                                        stroke="currentColor" stroke-width="2" />
-                                    <path d="M20 80 Q100 60 180 80" fill="none" stroke="currentColor"
-                                        stroke-width="1.5" />
-                                    <circle cx="60" cy="100" r="20" fill="none" stroke="currentColor"
-                                        stroke-width="1.5" />
-                                    <rect x="110" y="85" width="40" height="50" rx="4" fill="none" stroke="currentColor"
-                                        stroke-width="1.5" />
-                                </svg>
+                        <div class="aspect-[4/5] overflow-hidden relative group">
+                            <div class="slider-container h-full" data-slider="1">
+                                <div class="slider-item">
+                                    <div
+                                        class="w-full h-full bg-gradient-to-br from-gray-100 via-stone-100 to-gray-200 flex items-center justify-center">
+                                        <svg viewbox="0 0 200 200" class="w-32 h-32 text-stone-300">
+                                            <rect x="20" y="40" width="160" height="120" rx="8" fill="none"
+                                                stroke="currentColor" stroke-width="2" />
+                                            <path d="M20 80 Q100 60 180 80" fill="none" stroke="currentColor"
+                                                stroke-width="1.5" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="slider-item">
+                                    <div class="w-full h-full bg-stone-200 flex items-center justify-center">
+                                        <span class="text-stone-400 font-light text-sm uppercase tracking-widest">Angle
+                                            Two</span>
+                                    </div>
+                                </div>
+                                <div class="slider-item">
+                                    <div class="w-full h-full bg-stone-300 flex items-center justify-center">
+                                        <span class="text-stone-400 font-light text-sm uppercase tracking-widest">Angle
+                                            Three</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slider-dots" data-dots="1">
+                                <div class="slider-dot active"></div>
+                                <div class="slider-dot"></div>
+                                <div class="slider-dot"></div>
                             </div>
                         </div>
                         <div class="p-6">
-                            <h3 class="font-display text-2xl font-medium mb-2">Infinity Backdrop</h3>
-                            <p class="text-stone-500 font-light mb-4 leading-relaxed">Seamless cyclorama perfect for
-                                clean, editorial fashion and product photography.</p><button
-                                class="text-sm font-medium flex items-center gap-2 hover:gap-3 transition-all"> View
-                                Details
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                </svg></button>
+                            <h3 class="font-display text-2xl font-medium mb-2 text-[var(--text-primary)]">Infinity
+                                Backdrop</h3>
+                            <p class="text-stone-500 font-light leading-relaxed">Seamless cyclorama perfect for clean,
+                                editorial fashion and product photography.</p>
                         </div>
-                    </div><!-- Vanity Setup -->
-                    <div class="card-hover bg-stone-50 rounded-3xl overflow-hidden">
-                        <div class="aspect-[4/5] overflow-hidden">
-                            <div
-                                class="card-image w-full h-full bg-gradient-to-br from-amber-50 via-stone-100 to-amber-100 flex items-center justify-center">
-                                <svg viewbox="0 0 200 200" class="w-32 h-32 text-stone-300">
-                                    <rect x="50" y="30" width="100" height="80" rx="8" fill="none" stroke="currentColor"
-                                        stroke-width="2" />
-                                    <circle cx="70" cy="50" r="8" fill="none" stroke="currentColor"
-                                        stroke-width="1.5" />
-                                    <circle cx="100" cy="50" r="8" fill="none" stroke="currentColor"
-                                        stroke-width="1.5" />
-                                    <circle cx="130" cy="50" r="8" fill="none" stroke="currentColor"
-                                        stroke-width="1.5" />
-                                    <rect x="60" y="120" width="80" height="50" rx="4" fill="none" stroke="currentColor"
-                                        stroke-width="1.5" />
-                                </svg>
+                    </div>
+                    <!-- Vanity Setup -->
+                    <div
+                        class="card-hover bg-[var(--card-bg)] rounded-3xl overflow-hidden transition-colors duration-300 border border-transparent dark:border-stone-800">
+                        <div class="aspect-[4/5] overflow-hidden relative group">
+                            <div class="slider-container h-full" data-slider="2">
+                                <div class="slider-item">
+                                    <div
+                                        class="w-full h-full bg-gradient-to-br from-amber-50 via-stone-100 to-amber-100 flex items-center justify-center">
+                                        <svg viewbox="0 0 200 200" class="w-32 h-32 text-stone-300">
+                                            <rect x="50" y="30" width="100" height="80" rx="8" fill="none"
+                                                stroke="currentColor" stroke-width="2" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="slider-item">
+                                    <div class="w-full h-full bg-amber-50 flex items-center justify-center">
+                                        <span class="text-stone-400 font-light text-sm uppercase tracking-widest">Detail
+                                            One</span>
+                                    </div>
+                                </div>
+                                <div class="slider-item">
+                                    <div class="w-full h-full bg-amber-100 flex items-center justify-center">
+                                        <span class="text-stone-400 font-light text-sm uppercase tracking-widest">Detail
+                                            Two</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slider-dots" data-dots="2">
+                                <div class="slider-dot active"></div>
+                                <div class="slider-dot"></div>
+                                <div class="slider-dot"></div>
                             </div>
                         </div>
                         <div class="p-6">
-                            <h3 class="font-display text-2xl font-medium mb-2">Vanity Lighting</h3>
-                            <p class="text-stone-500 font-light mb-4 leading-relaxed">Hollywood-style vanity setup with
-                                ring lights for beauty and makeup content.</p><button
-                                class="text-sm font-medium flex items-center gap-2 hover:gap-3 transition-all"> View
-                                Details
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                </svg></button>
+                            <h3 class="font-display text-2xl font-medium mb-2 text-[var(--text-primary)]">Vanity Setup
+                            </h3>
+                            <p class="text-stone-500 font-light leading-relaxed">Dedicated glam space with professional
+                                lighting and oversized mirrors for beauty shoots.</p>
                         </div>
-                    </div><!-- Lifestyle Setup -->
-                    <div class="card-hover bg-stone-50 rounded-3xl overflow-hidden">
-                        <div class="aspect-[4/5] overflow-hidden">
-                            <div
-                                class="card-image w-full h-full bg-gradient-to-br from-stone-100 via-amber-50 to-stone-200 flex items-center justify-center">
-                                <svg viewbox="0 0 200 200" class="w-32 h-32 text-stone-300">
-                                    <rect x="30" y="80" width="60" height="80" rx="4" fill="none" stroke="currentColor"
-                                        stroke-width="1.5" />
-                                    <ellipse cx="60" cy="70" rx="20" ry="10" fill="none" stroke="currentColor"
-                                        stroke-width="1.5" />
-                                    <rect x="110" y="60" width="50" height="100" rx="4" fill="none"
-                                        stroke="currentColor" stroke-width="1.5" />
-                                    <circle cx="135" cy="90" r="15" fill="none" stroke="currentColor"
-                                        stroke-width="1.5" />
-                                </svg>
+                    </div>
+                    <!-- Lifestyle Setup -->
+                    <div
+                        class="card-hover bg-[var(--card-bg)] rounded-3xl overflow-hidden transition-colors duration-300 border border-transparent dark:border-stone-800">
+                        <div class="aspect-[4/5] overflow-hidden relative group">
+                            <div class="slider-container h-full" data-slider="3">
+                                <div class="slider-item">
+                                    <div
+                                        class="w-full h-full bg-gradient-to-br from-stone-100 via-amber-50 to-stone-200 flex items-center justify-center">
+                                        <svg viewbox="0 0 200 200" class="w-32 h-32 text-stone-300">
+                                            <rect x="30" y="80" width="60" height="80" rx="4" fill="none"
+                                                stroke="currentColor" stroke-width="1.5" />
+                                            <ellipse cx="60" cy="70" rx="20" ry="10" fill="none" stroke="currentColor"
+                                                stroke-width="1.5" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="slider-item">
+                                    <div class="w-full h-full bg-stone-100 flex items-center justify-center">
+                                        <span class="text-stone-400 font-light text-sm uppercase tracking-widest">Prop
+                                            Setup</span>
+                                    </div>
+                                </div>
+                                <div class="slider-item">
+                                    <div class="w-full h-full bg-stone-200 flex items-center justify-center">
+                                        <span
+                                            class="text-stone-400 font-light text-sm uppercase tracking-widest">Natural
+                                            Light</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slider-dots" data-dots="3">
+                                <div class="slider-dot active"></div>
+                                <div class="slider-dot"></div>
+                                <div class="slider-dot"></div>
                             </div>
                         </div>
                         <div class="p-6">
-                            <h3 class="font-display text-2xl font-medium mb-2">Lifestyle Set</h3>
-                            <p class="text-stone-500 font-light mb-4 leading-relaxed">Curated lifestyle props and
-                                natural lighting for authentic brand storytelling.</p><button
-                                class="text-sm font-medium flex items-center gap-2 hover:gap-3 transition-all"> View
-                                Details
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                </svg></button>
+                            <h3 class="font-display text-2xl font-medium mb-2 text-[var(--text-primary)]">Lifestyle Set
+                            </h3>
+                            <p class="text-stone-500 font-light leading-relaxed">Curated lifestyle props and natural
+                                lighting for authentic brand storytelling.</p>
                         </div>
                     </div>
                 </div>
@@ -611,13 +693,13 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs uppercase tracking-widest text-stone-500 mb-2">Name</label>
-                                <input type="text" required
+                                <input type="text" id="contact-name" required
                                     class="w-full bg-stone-900 border border-stone-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-stone-500 transition-colors"
                                     placeholder="Your name">
                             </div>
                             <div>
                                 <label class="block text-xs uppercase tracking-widest text-stone-500 mb-2">Email</label>
-                                <input type="email" required
+                                <input type="email" id="contact-email" required
                                     class="w-full bg-stone-900 border border-stone-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-stone-500 transition-colors"
                                     placeholder="hello@company.com">
                             </div>
@@ -636,7 +718,7 @@
                         </div>
                         <div>
                             <label class="block text-xs uppercase tracking-widest text-stone-500 mb-2">Notes</label>
-                            <textarea rows="3"
+                            <textarea id="contact-notes" rows="3"
                                 class="w-full bg-stone-900 border border-stone-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-stone-500 transition-colors"
                                 placeholder="Tell us about your project..."></textarea>
                         </div>
@@ -898,6 +980,83 @@
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     document.getElementById('book').scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+
+            // Form Submission Logic
+            const bookingForm = document.getElementById('booking-form');
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+
+                    const submitBtn = bookingForm.querySelector('button[type="submit"]');
+                    const originalBtnText = submitBtn.textContent;
+                    submitBtn.textContent = 'Sending...';
+                    submitBtn.disabled = true;
+
+                    const formData = {
+                        name: document.getElementById('contact-name').value,
+                        email: document.getElementById('contact-email').value,
+                        plan: document.getElementById('plan-select').value,
+                        notes: document.getElementById('contact-notes').value
+                    };
+
+                    try {
+                        const response = await fetch('/api/contact', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(formData),
+                        });
+
+                        const result = await response.json();
+
+                        if (response.ok) {
+                            alert('Thank you! Your inquiry has been sent successfully.');
+                            bookingForm.reset();
+                        } else {
+                            alert('Error: ' + (result.message || 'Something went wrong. Please try again.'));
+                        }
+                    } catch (error) {
+                        console.error('Submission error:', error);
+                        alert('Error: Could not connect to the server. Please try again later.');
+                    } finally {
+                        submitBtn.textContent = originalBtnText;
+                        submitBtn.disabled = false;
+                    }
+                });
+            }
+
+            // Slider Scroll Synchronization
+            const sliders = document.querySelectorAll('.slider-container');
+            sliders.forEach(slider => {
+                const sliderId = slider.getAttribute('data-slider');
+                const dotsContainer = document.querySelector(`[data-dots="${sliderId}"]`);
+                const dots = dotsContainer.querySelectorAll('.slider-dot');
+
+                slider.addEventListener('scroll', () => {
+                    const scrollLeft = slider.scrollLeft;
+                    const width = slider.offsetWidth;
+                    const activeIndex = Math.round(scrollLeft / width);
+
+                    dots.forEach((dot, index) => {
+                        if (index === activeIndex) {
+                            dot.classList.add('active');
+                        } else {
+                            dot.classList.remove('active');
+                        }
+                    });
+                });
+
+                // Optional: Click dots to scroll
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        slider.scrollTo({
+                            left: index * slider.offsetWidth,
+                            behavior: 'smooth'
+                        });
+                    });
                 });
             });
         });
