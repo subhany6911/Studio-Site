@@ -36,6 +36,7 @@
 
         .card-hover {
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
         }
 
         .card-hover:hover {
@@ -132,6 +133,8 @@
         .gallery-item {
             overflow: hidden;
             border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .gallery-item img {
@@ -159,8 +162,8 @@
         <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md">
             <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
                 <!-- Brand Logo -->
-                <a href="#" class="flex items-center">
-                    <img src="assets/logo.png" alt="LUMIÈRE Logo" class="h-14 w-auto object-contain">
+                <a href="#" class="flex items-center relative z-10">
+                    <img src="assets/logo.png" alt="LUMIÈRE Logo" class="h-10 md:h-14 w-auto object-contain">
                 </a>
 
                 <!-- Centered Nav Links -->
@@ -196,7 +199,8 @@
                 </div>
             </div>
         </nav><!-- Hero Section -->
-        <section class="min-h-screen flex items-center justify-center pt-20 relative bg-white overflow-hidden">
+        <section
+            class="min-h-[70vh] md:min-h-screen flex items-center justify-center pt-32 pb-16 md:py-20 relative bg-white overflow-hidden">
             <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
                 <h1 id="heroHeadline"
                     class="fade-in stagger-1 font-body text-5xl md:text-7xl font-bold tracking-tight mb-4 text-black">
