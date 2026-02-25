@@ -12,10 +12,40 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&amp;family=Outfit:wght@300;400;500;600&amp;display=swap"
         rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Cormorant Garamond', 'serif'],
+                        body: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
+        :root {
+            --bg-primary: #ffffff;
+            --text-primary: #1c1917;
+            --text-secondary: #78716c;
+            --card-bg: #fafaf9;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+        }
+
+        .dark {
+            --bg-primary: #0a0a0a;
+            --text-primary: #fafaf9;
+            --text-secondary: #a8a29e;
+            --card-bg: #141414;
+            --nav-bg: rgba(10, 10, 10, 0.9);
+        }
+
         html,
         body {
             height: 100%;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         * {
@@ -148,6 +178,22 @@
         .warm-overlay {
             background: linear-gradient(45deg, rgba(201, 184, 168, 0.1) 0%, transparent 100%);
         }
+
+        .dark img[src*="logo.png"] {
+            filter: invert(1) brightness(2);
+        }
+
+        .dark .section-divider {
+            background: #a8a29e;
+        }
+
+        .dark input,
+        .dark select,
+        .dark textarea {
+            background-color: #141414 !important;
+            color: #fafaf9 !important;
+            border-color: #292524 !important;
+        }
     </style>
     <style>
         body {
@@ -157,13 +203,14 @@
     <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
 </head>
 
-<body class="min-h-screen flex flex-col font-body bg-white text-gray-900">
+<body
+    class="min-h-screen flex flex-col font-body bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-300">
     <div class="flex-grow"><!-- Navigation -->
-        <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md">
+        <nav class="fixed top-0 left-0 right-0 z-50 bg-[var(--nav-bg)] backdrop-blur-md transition-colors duration-300">
             <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
                 <!-- Brand Logo -->
                 <a href="#" class="flex items-center relative z-10">
-                    <img src="assets/logo.png" alt="LUMIÈRE Logo" class="h-10 md:h-18 w-auto object-contain">
+                    <img src="assets/logo.png" alt="LUMIÈRE Logo" class="h-10 md:h-14 w-auto object-contain">
                 </a>
 
                 <!-- Centered Nav Links -->
@@ -177,9 +224,24 @@
                 </div>
 
                 <!-- Right Action -->
-                <div class="hidden md:block">
+                <div class="hidden md:flex items-center gap-4">
+                    <button id="themeToggle" onclick="toggleTheme()"
+                        class="p-2 rounded-full hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors"
+                        aria-label="Toggle Theme">
+                        <!-- Sun Icon -->
+                        <svg id="sunIcon" class="hidden dark:block w-5 h-5 text-amber-500" fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path
+                                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" />
+                        </svg>
+                        <!-- Moon Icon -->
+                        <svg id="moonIcon" class="block dark:hidden w-5 h-5 text-stone-600" fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                        </svg>
+                    </button>
                     <a href="#book"
-                        class="bg-black text-white text-sm font-medium px-6 py-2.5 rounded-full hover:bg-stone-800 transition-all">Book
+                        class="bg-black dark:bg-white dark:text-black text-white text-sm font-medium px-6 py-2.5 rounded-full hover:bg-stone-800 dark:hover:bg-stone-200 transition-all">Book
                         Studio</a>
                 </div>
 
@@ -189,26 +251,43 @@
                             d="M4 6h16M4 12h16M4 18h16" />
                     </svg></button>
             </div><!-- Mobile Menu -->
-            <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-100 px-6 py-4">
+            <div id="mobileMenu"
+                class="hidden md:hidden bg-[var(--bg-primary)] border-t border-gray-100 dark:border-stone-800 px-6 py-4 transition-colors duration-300">
                 <div class="flex flex-col gap-4">
                     <a href="#spaces" class="text-sm font-medium py-2">Studio Spaces</a>
                     <a href="#portfolio" class="text-sm font-medium py-2">Portfolio</a>
                     <a href="#pricing" class="text-sm font-medium py-2">Pricing</a>
-                    <a href="#book" class="bg-black text-white text-sm px-5 py-2.5 rounded-full text-center">Book
+                    <div class="flex items-center justify-between py-2">
+                        <span class="text-sm font-medium font-body transition-colors">Switch Theme</span>
+                        <button onclick="toggleTheme()"
+                            class="p-2 rounded-full bg-stone-100 dark:bg-stone-800 transition-colors">
+                            <svg class="block dark:hidden w-5 h-5 text-stone-600" fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                            </svg>
+                            <svg class="hidden dark:block w-5 h-5 text-amber-500" fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path
+                                    d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <a href="#book"
+                        class="bg-black dark:bg-white dark:text-black text-white text-sm px-5 py-2.5 rounded-full text-center">Book
                         Now</a>
                 </div>
             </div>
         </nav><!-- Hero Section -->
         <section
-            class="min-h-fit md:min-h-screen flex items-center justify-center pt-32 pb-12 md:py-20 relative bg-white overflow-hidden">
+            class="min-h-fit md:min-h-screen flex items-center justify-center pt-32 pb-12 md:py-20 relative bg-[var(--bg-primary)] overflow-hidden transition-colors duration-300">
             <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
                 <h1 id="heroHeadline"
-                    class="fade-in stagger-1 font-body text-5xl md:text-7xl font-bold tracking-tight mb-4 text-black">
+                    class="fade-in stagger-1 font-body text-5xl md:text-7xl font-bold tracking-tight mb-4 text-[var(--text-primary)] transition-colors duration-300">
                     Create. Shoot. Deliver.
                 </h1>
                 <p id="heroSubtext"
-                    class="fade-in stagger-2 text-3xl md:text-4xl text-stone-400 font-medium mb-12 max-w-4xl mx-auto leading-tight transition-all h-[4.5rem] md:h-auto">
-                    <span id="typewriter"></span><span class="cursor"></span>
+                    class="fade-in stagger-2 text-3xl md:text-4xl text-[var(--text-secondary)] font-medium mb-12 max-w-4xl mx-auto leading-tight transition-all h-[4.5rem] md:h-auto">
+                    <span id="typewriter"></span><span class="cursor dark:border-white"></span>
                 </p>
                 <div class="fade-in stagger-3 flex flex-col sm:flex-row gap-4 justify-center items-center">
                     <a href="#book"
@@ -221,15 +300,17 @@
             </div>
         </section>
         <!-- Studio Spaces Section -->
-        <section id="spaces" class="py-12 md:py-32 px-6 bg-white">
+        <section id="spaces" class="py-12 md:py-32 px-6 bg-[var(--bg-primary)] transition-colors duration-300">
             <div class="max-w-7xl mx-auto">
                 <div class="text-center mb-16">
-                    <p class="text-sm tracking-[0.3em] text-stone-400 mb-4 font-light">OUR SPACES</p>
-                    <h2 class="font-display text-4xl md:text-5xl font-light mb-4">Studio Setups</h2>
+                    <p class="text-sm tracking-[0.3em] text-[var(--text-secondary)] mb-4 font-light">OUR SPACES</p>
+                    <h2 class="font-display text-4xl md:text-5xl font-light mb-4 text-[var(--text-primary)]">Studio
+                        Setups</h2>
                     <div class="section-divider mx-auto"></div>
                 </div>
                 <div class="grid md:grid-cols-3 gap-8"><!-- Infinity Backdrop -->
-                    <div class="card-hover bg-stone-50 rounded-3xl overflow-hidden">
+                    <div
+                        class="card-hover bg-[var(--card-bg)] rounded-3xl overflow-hidden transition-colors duration-300 border border-transparent dark:border-stone-800">
                         <div class="aspect-[4/5] overflow-hidden">
                             <div
                                 class="card-image w-full h-full bg-gradient-to-br from-gray-100 via-stone-100 to-gray-200 flex items-center justify-center">
@@ -317,12 +398,14 @@
                     </div>
                 </div>
             </div>
-        </section><!-- Portfolio Section -->
-        <section id="portfolio" class="py-24 md:py-32 px-6 bg-stone-50">
+        </section> <!-- Portfolio Section -->
+        <section id="portfolio"
+            class="py-24 md:py-32 px-6 bg-[var(--bg-primary)] dark:bg-stone-900/20 transition-colors duration-300">
             <div class="max-w-7xl mx-auto">
                 <div class="text-center mb-16">
-                    <p class="text-sm tracking-[0.3em] text-stone-400 mb-4 font-light">PORTFOLIO</p>
-                    <h2 class="font-display text-4xl md:text-5xl font-light mb-4">Recent Work</h2>
+                    <p class="text-sm tracking-[0.3em] text-[var(--text-secondary)] mb-4 font-light">PORTFOLIO</p>
+                    <h2 class="font-display text-4xl md:text-5xl font-light mb-4 text-[var(--text-primary)]">Recent Work
+                    </h2>
                     <div class="section-divider mx-auto"></div>
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"><!-- Gallery Items -->
@@ -360,19 +443,21 @@
                     </div>
                 </div>
             </div>
-        </section><!-- Pricing Section -->
-        <section id="pricing" class="py-24 md:py-32 px-6 bg-white">
+        </section> <!-- Pricing Section -->
+        <section id="pricing" class="py-24 md:py-32 px-6 bg-[var(--bg-primary)] transition-colors duration-300">
             <div class="max-w-5xl mx-auto">
                 <div class="text-center mb-16">
-                    <p class="text-sm tracking-[0.3em] text-stone-400 mb-4 font-light">PRICING</p>
-                    <h2 class="font-display text-4xl md:text-5xl font-light mb-4">Simple &amp; Transparent</h2>
+                    <p class="text-sm tracking-[0.3em] text-[var(--text-secondary)] mb-4 font-light">PRICING</p>
+                    <h2 class="font-display text-4xl md:text-5xl font-light mb-4 text-[var(--text-primary)]">Simple
+                        &amp; Transparent</h2>
                     <div class="section-divider mx-auto"></div>
                 </div>
                 <div class="grid md:grid-cols-3 gap-6"><!-- Basic -->
-                    <div class="card-hover bg-white border border-stone-200 rounded-3xl p-8 text-center">
-                        <p class="text-sm tracking-widest text-stone-400 mb-2">BASIC</p>
-                        <h3 class="font-display text-5xl font-light mb-1">15,000/-</h3>
-                        <p class="text-stone-500 mb-6">2 Hours</p>
+                    <div
+                        class="card-hover bg-[var(--card-bg)] border border-stone-200 dark:border-stone-800 rounded-3xl p-8 text-center transition-colors duration-300">
+                        <p class="text-sm tracking-widest text-[var(--text-secondary)] mb-2">BASIC</p>
+                        <h3 class="font-display text-5xl font-light mb-1 text-[var(--text-primary)]">15,000/-</h3>
+                        <p class="text-[var(--text-secondary)] mb-6">2 Hours</p>
                         <ul class="text-left space-y-3 mb-8">
                             <li class="flex items-center gap-3 text-sm text-stone-600">
                                 <svg class="w-5 h-5 text-stone-400" fill="none" stroke="currentColor"
@@ -481,27 +566,29 @@
                     </svg> All packages include professional lighting equipment
                 </p>
             </div>
-        </section><!-- About Section -->
-        <section id="about" class="py-24 md:py-32 px-6 bg-gradient-to-b from-stone-50 to-white">
+        </section> <!-- About Section -->
+        <section id="about"
+            class="py-24 md:py-32 px-6 bg-gradient-to-b from-[var(--bg-primary)] to-[var(--bg-primary)] transition-colors duration-300">
             <div class="max-w-4xl mx-auto text-center">
-                <p class="text-sm tracking-[0.3em] text-stone-400 mb-4 font-light">ABOUT US</p>
-                <h2 class="font-display text-4xl md:text-5xl font-light mb-8">Our Story</h2>
+                <p class="text-sm tracking-[0.3em] text-[var(--text-secondary)] mb-4 font-light">ABOUT US</p>
+                <h2 class="font-display text-4xl md:text-5xl font-light mb-8 text-[var(--text-primary)]">Our Story</h2>
                 <div class="section-divider mx-auto mb-12"></div>
-                <p id="aboutText" class="text-xl md:text-2xl font-light text-stone-600 leading-relaxed mb-10">A modern
+                <p id="aboutText"
+                    class="text-xl md:text-2xl font-light text-[var(--text-secondary)] leading-relaxed mb-10">A modern
                     content studio built for brands and creators to produce high-quality visuals. We believe every
                     creator deserves access to professional spaces that inspire and elevate their work.</p>
                 <div class="grid grid-cols-3 gap-8 max-w-md mx-auto">
                     <div>
-                        <p class="font-display text-4xl font-light">500+</p>
-                        <p class="text-sm text-stone-500">Shoots</p>
+                        <p class="font-display text-4xl font-light text-[var(--text-primary)]">500+</p>
+                        <p class="text-sm text-[var(--text-secondary)]">Shoots</p>
                     </div>
                     <div>
-                        <p class="font-display text-4xl font-light">200+</p>
-                        <p class="text-sm text-stone-500">Brands</p>
+                        <p class="font-display text-4xl font-light text-[var(--text-primary)]">200+</p>
+                        <p class="text-sm text-[var(--text-secondary)]">Brands</p>
                     </div>
                     <div>
-                        <p class="font-display text-4xl font-light">5★</p>
-                        <p class="text-sm text-stone-500">Rating</p>
+                        <p class="font-display text-4xl font-light text-[var(--text-primary)]">5★</p>
+                        <p class="text-sm text-[var(--text-secondary)]">Rating</p>
                     </div>
                 </div>
             </div>
@@ -787,8 +874,26 @@
             }
         }
 
+        // Theme Toggle Logic
+        function toggleTheme() {
+            const html = document.documentElement;
+            const isDark = html.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        // Initialize Theme
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                document.documentElement.classList.add('dark');
+            }
+        }
+
         // Update all Book Studio links to point to the form
         document.addEventListener('DOMContentLoaded', () => {
+            initTheme();
             setTimeout(type, 1000);
 
             document.querySelectorAll('a[href="#book"]').forEach(link => {
@@ -803,4 +908,3 @@
 </body>
 
 </html>
-
