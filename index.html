@@ -218,10 +218,23 @@
             cursor: pointer;
         }
 
+        @media (max-width: 768px) {
+            .slider-dot {
+                width: 5px;
+                height: 5px;
+            }
+        }
+
         .slider-dot.active {
             background: white;
             width: 14px;
             border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .slider-dot.active {
+                width: 12px;
+            }
         }
 
         .slider-nav-btn {
@@ -263,7 +276,9 @@
 
         @media (max-width: 768px) {
             .slider-nav-btn {
-                display: none;
+                opacity: 1;
+                width: 28px;
+                height: 28px;
             }
         }
 
@@ -446,8 +461,12 @@
                         <div class="p-6">
                             <h3 class="font-display text-2xl font-medium mb-2 text-[var(--text-primary)]">Infinity
                                 Backdrop</h3>
-                            <p class="text-stone-500 font-light leading-relaxed">Seamless cyclorama perfect for clean,
+                            <p class="text-stone-500 font-light leading-relaxed mb-4">Seamless cyclorama perfect for
+                                clean,
                                 editorial fashion and product photography.</p>
+                            <a href="details.html?id=infinity-backdrop"
+                                class="text-sm font-medium border-b border-black dark:border-white pb-0.5 hover:text-stone-500 hover:border-stone-500 transition-all">View
+                                More</a>
                         </div>
                     </div>
                     <!-- Vanity Setup -->
@@ -505,8 +524,12 @@
                         <div class="p-6">
                             <h3 class="font-display text-2xl font-medium mb-2 text-[var(--text-primary)]">Vanity Setup
                             </h3>
-                            <p class="text-stone-500 font-light leading-relaxed">Dedicated glam space with professional
+                            <p class="text-stone-500 font-light leading-relaxed mb-4">Dedicated glam space with
+                                professional
                                 lighting and oversized mirrors for beauty shoots.</p>
+                            <a href="details.html?id=vanity-setup"
+                                class="text-sm font-medium border-b border-black dark:border-white pb-0.5 hover:text-stone-500 hover:border-stone-500 transition-all">View
+                                More</a>
                         </div>
                     </div>
                     <!-- Lifestyle Setup -->
@@ -561,8 +584,12 @@
                         <div class="p-6">
                             <h3 class="font-display text-2xl font-medium mb-2 text-[var(--text-primary)]">Lifestyle Set
                             </h3>
-                            <p class="text-stone-500 font-light leading-relaxed">Curated lifestyle props and natural
+                            <p class="text-stone-500 font-light leading-relaxed mb-4">Curated lifestyle props and
+                                natural
                                 lighting for authentic brand storytelling.</p>
+                            <a href="details.html?id=lifestyle-set"
+                                class="text-sm font-medium border-b border-black dark:border-white pb-0.5 hover:text-stone-500 hover:border-stone-500 transition-all">View
+                                More</a>
                         </div>
                     </div>
                 </div>
