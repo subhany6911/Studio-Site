@@ -318,19 +318,22 @@
         }
 
         .splash-logo {
-            width: 120px;
+            width: 150px;
             height: auto;
-            transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            animation: logoFadeIn 1s ease-out forwards;
+        }
+
+        @keyframes logoFadeIn {
+            to {
+                opacity: 1;
+            }
         }
 
         #splash-screen.fade-out {
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
-        }
-
-        #splash-screen.fade-out .splash-logo {
-            transform: scale(2);
         }
 
         body.show-splash {
@@ -425,14 +428,14 @@
             </div>
         </nav><!-- Hero Section -->
         <section
-            class="min-h-fit md:min-h-screen flex items-center justify-center pt-28 pb-6 md:py-10 relative bg-[var(--bg-primary)] overflow-hidden transition-colors duration-300">
+            class="min-h-fit md:min-h-screen flex items-center justify-center pt-28 pb-3 md:pt-10 md:pb-5 relative bg-[var(--bg-primary)] overflow-hidden transition-colors duration-300">
             <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
                 <h1 id="heroHeadline"
                     class="fade-in stagger-1 font-body text-5xl md:text-7xl font-bold tracking-tight mb-4 text-[var(--text-primary)] transition-colors duration-300">
                     Create. Shoot. Deliver.
                 </h1>
                 <p id="heroSubtext"
-                    class="fade-in stagger-2 text-3xl md:text-4xl text-[var(--text-secondary)] font-medium mb-12 max-w-4xl mx-auto leading-tight transition-all h-[4.5rem] md:h-auto">
+                    class="fade-in stagger-2 text-[28px] md:text-[34px] text-[var(--text-secondary)] font-normal mb-12 max-w-4xl mx-auto leading-tight transition-all h-[4.5rem] md:h-auto">
                     <span id="typewriter"></span><span class="cursor dark:border-white"></span>
                 </p>
                 <div class="fade-in stagger-3 flex flex-col gap-4 items-center max-w-xl mx-auto">
@@ -1403,7 +1406,7 @@
                 document.documentElement.classList.add('dark');
             }
 
-            // Small delay to ensure smooth transition
+            // Delay before starting fade out to allow logo fade-in to shine
             setTimeout(() => {
                 splash.classList.add('fade-out');
                 body.classList.remove('show-splash');
@@ -1412,7 +1415,7 @@
                 setTimeout(() => {
                     splash.remove();
                 }, 800);
-            }, 1000);
+            }, 1500);
         });
 
         function scrollSlider(sliderId, direction) {
